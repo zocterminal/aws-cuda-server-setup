@@ -24,6 +24,8 @@ if [[ ! $UNAME =~ $PAT ]]; then
 	exit
 fi
 
+# see https://developer.nvidia.com/cuda-12-0-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Debian&target_version=11&target_type=deb_local
+# see https://developer.nvidia.com/cuda-12-0-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Debian&target_version=11&target_type=deb_network
 
 # source headers for debian kernel build (required for cuda build)
 # (this will fail on some AWS specific debian images, make sure you
