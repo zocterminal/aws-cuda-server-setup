@@ -31,35 +31,46 @@ fi
 sudo apt -y install linux-headers-`uname -r` 
 
 # get the cuda driver package
-wget https://developer.download.nvidia.com/compute/cuda/12.0.0/local_installers/cuda_12.0.0_525.60.13_linux.run
+file=cuda_12.0.0_525.60.13_linux.run
+if [ ! -f $file ] ; then
+	wget https://developer.download.nvidia.com/compute/cuda/12.0.0/local_installers/$file
+fi
 
 # install the driver 
 echo 'Building and installing driver ...  (this may take a few minutes)'
 echo 'Note: While cuda-install runs, you can continue with step 3 in another tab'
 echo ''
-sudo bash cuda_12.0.0_525.60.13_linux.run --driver --toolkit --silent # install drivers only
+sudo bash cuda_12.0.0_525.60.13_linux.run --driver --toolkit --silent # install drivers and toolkit
 
 # check nvidia driver status
 nvidia-smi
 
 
 # setup toolkit ennvironment
-xport PATH="/usr/local/cuda-12.0/bin:$PATH"
+if ! echo $PATH | grep -q cuda-12 ; then
+	export PATH="/usr/local/cuda-12.0/bin:$PATH"
+fi
+
 if ! grep -q cuda-12 .profile; then
 	echo 'export PATH="/usr/local/cuda-12.0/bin:$PATH"' >>.profile
 fi
+
 sudo ln -s /usr/local/cuda-12.0/targets/x86_64-linux/lib/ /usr/lib/cuda-12
 sudo ldconfig
 
-echo ''
 if ! which nvcc ; then
-	echo 'Could not find nvcc.  Make sure /usr/local/cuda-12.0/bin is in the path'
+	echo -e "\e[31;1m"
+	echo 'Could not find nvcc.'
+	echo 'Is your NVIDIA installation complete already?'
+	echo 'Make sure /usr/local/cuda-12.0/bin exists and is in the PATH, e.g. type'
+	echo '  PATH="/usr/local/cuda-12.0/bin:$PATH"' 
+	echo -e "\e[0m"
 fi
 
 
 # done
-echo ''
+echo -e "\e[32;1m"
 echo 'If after step3 all is good, dont forget to delete the driver package:'
-echo '   rm cuda_12*'
-echo ''
+echo '  rm cuda_12*'
+echo -e "\e[0m"
 

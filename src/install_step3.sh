@@ -15,13 +15,25 @@ fi
 #
 # get the llm.c github project
 #
-git clone https://github.com/karpathy/llm.c
-mv llm.c llm
+if [ ! -d ~/llm ] ; then
+	git clone https://github.com/karpathy/llm.c
+	mv llm.c llm
+fi
+
+if ! which nvcc ; then
+	echo -e "\e[31;1m"
+	echo 'Could not find nvcc.'
+	echo 'Is your NVIDIA installation complete already?'
+	echo 'Make sure /usr/local/cuda-12.0/bin exists and is in the PATH, e.g. type'
+	echo '  PATH="/usr/local/cuda-12.0/bin:$PATH"' 
+	echo -e "\e[0m"
+	return
+fi
+
+
 cd llm
 
-
 cat <<EOF
-Check if CUDA install is complete then log out and log in again
 
 View the README at https://github.com/karpathy/llm.c
 
