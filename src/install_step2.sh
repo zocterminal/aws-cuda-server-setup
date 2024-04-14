@@ -31,13 +31,13 @@ fi
 sudo apt -y install linux-headers-`uname -r` 
 
 # get the cuda driver package
-# wget https://developer.download.nvidia.com/compute/cuda/12.0.0/local_installers/cuda_12.0.0_525.60.13_linux.run
+wget https://developer.download.nvidia.com/compute/cuda/12.0.0/local_installers/cuda_12.0.0_525.60.13_linux.run
 
 # install the driver 
 echo 'Building and installing driver ...  (this may take a few minutes)'
 echo 'Note: While cuda-install runs, you can continue with step 3 in another tab'
 echo ''
-# sudo bash cuda_12.0.0_525.60.13_linux.run --driver --toolkit --silent # install drivers only
+sudo bash cuda_12.0.0_525.60.13_linux.run --driver --toolkit --silent # install drivers only
 
 # check nvidia driver status
 nvidia-smi
