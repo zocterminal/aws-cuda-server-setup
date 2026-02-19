@@ -8,5 +8,6 @@ This set of shell scripts accompany the article
 Support files for the article that shows how to create an AWS server that allows to run machine learning tasks based on Andrej Karpathy's 
 [llm.c](https://github.com/karpathy/llm.c) project.
 
-Please see that article for instructions.
+Please see that article for instructions!
+
 
