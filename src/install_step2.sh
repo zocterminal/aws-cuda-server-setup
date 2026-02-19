@@ -3,6 +3,15 @@
 
 # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-nvidia-driver.html
 # https://docs.nvidia.com/cuda/cuda-installation-guide-linux/
+# https://developer.nvidia.com/cuda-12-0-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Debian&target_version=11&target_type=deb_local
+# https://developer.nvidia.com/cuda-12-0-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Debian&target_version=11&target_type=deb_network
+cat <<EOF >cuda_debian.sh
+ wget https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/cuda-keyring_1.0-1_all.deb
+ sudo dpkg -i cuda-keyring_1.0-1_all.deb
+ sudo add-apt-repository contrib
+ sudo apt-get update
+ sudo apt-get -y install cuda
+EOF
 
 #
 # linux headers for nvidia building

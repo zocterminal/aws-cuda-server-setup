@@ -31,7 +31,7 @@ sudo chmod 644 /etc/update-motd.d/10-* /etc/update-motd.d/88-* /etc/update-motd.
 
 sudo apt update -y
 sudo apt upgrade -y
-sudo apt install -y zip unzip wget dos2unix lrzsz
+sudo apt install -y zip unzip wget dos2unix lrzsz software-properties-common
 sudo apt install -y git build-essential net-tools bc
 sudo apt install -y python3 python3-venv python3-pip
 
